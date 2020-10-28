@@ -82,11 +82,12 @@ function getOne():void{
               console.log("status code is " + response.status);
               let text: HTMLHeadElement =<HTMLHeadElement> document.getElementById('added');
               text.innerHTML= "Car added";
-
-              
+             
           } )
           .catch(function(error :AxiosError): void{
               console.log(error)
+              let text: HTMLHeadElement =<HTMLHeadElement> document.getElementById('added');
+              text.innerHTML= "Something went wrong";
           })
 
         }
