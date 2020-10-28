@@ -37,8 +37,7 @@ function AddLiElement(text:string):HTMLLIElement{
     return newLi;
 }
 
-let getOnecarButton: HTMLButtonElement =<HTMLButtonElement> document.getElementById("GetOneCar");
-getOnecarButton.addEventListener('click', getOne);
+
 let oneCar:HTMLOListElement=<HTMLOListElement>document.getElementById("oneCar");
 
 function getOne():void{
@@ -66,4 +65,53 @@ function getOne():void{
     })
 
 }
+        let addcarButton: HTMLButtonElement =<HTMLButtonElement> document.getElementById("Add");
+        addcarButton.addEventListener('click', addCar);
+
+        function addCar():void{
+          let addVendor: HTMLInputElement=<HTMLInputElement>document.getElementById('vendor');
+          let addModel: HTMLInputElement =<HTMLInputElement> document.getElementById('model');
+          let addPrice: HTMLInputElement=<HTMLInputElement> document.getElementById('price');
+
+          let theVendor : string = addVendor.value;
+          let theModel :string = addModel.value;
+          let thePrice: number = +addPrice.value;
+          
+          axios.post<ICar>(carWebUrl, {vendor:theVendor, model :theModel, price:thePrice})
+          .then(function(response: AxiosResponse) : void{
+              console.log("status code is " + response.status);
+              let text: HTMLHeadElement =<HTMLHeadElement> document.getElementById('added');
+              text.innerHTML= "Car added";
+
+              
+          } )
+          .catch(function(error :AxiosError): void{
+              console.log(error)
+          })
+
+        }
+
+        let deleteButton: HTMLButtonElement =<HTMLButtonElement> document.getElementById('delete');
+        deleteButton.addEventListener('click',deleteCar);
+
+        function deleteCar(): void{
+           let inputDelete: HTMLInputElement =<HTMLInputElement> document.getElementById('IdToDelete');
+           let carID: number = +inputDelete.value;
+           console.log("car id is" + carID)
+
+            axios.delete(carWebUrl + carID)
+            .then(function(response : AxiosResponse){
+
+                console.log( "the status is" +response.status)
+                let message: HTMLHeadElement=<HTMLHeadElement> document.getElementById('deleted');
+                message.innerHTML="Car is deleted"; 
+            } )
+            .catch( function( error: AxiosError){
+                console.log(error);
+                let message: HTMLHeadElement=<HTMLHeadElement> document.getElementById('deleted');
+                message.innerHTML="Something went wrong";
+            })
+
+        }
+
 
