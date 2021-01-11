@@ -7,10 +7,38 @@
 </head>
 
 <body>
-  <h1>Webpack - TypeScript - Scss</h1>
-  <h2>TypeScript Hello World</h2>  
-  <div id="content"></div>
-    
+  <h1>Cars</h1>
+  <h2>List of cars</h2>  
+  <div id="ContentData">
+   <ol id="cars"> 
+
+   </ol>
+   <button id="ShowCars"> Show all cars </button>
+  </div>
+   
+  <div id="GetOne"> 
+    <input id="ID" placeholder="Insert an ID"><br>
+    <button id="GetOneCar"> Show specific car</button>
+    <ol id="oneCar">
+
+    </ol>
+  </div>
+
+  <div id="AddCar">
+<input id="vendor" placeholder="Vendor"><br>
+<input id="model" placeholder="Model"><br>
+<input id="price" placeholder="Price"><br>
+<button id="Add">Click to add</button>
+<h3 id="added"> </h3>
+ </div>
+
+ <div id="DeleteCar">
+<input id="IdToDelete" placeholder="Insert Id"><br>
+<button id="delete">Delete </button>
+<h3 id="deleted"></h3>
+<h4></h4>
+ </div>
+
   <script src="bundle.js"></script>
 </body>
 </html>
